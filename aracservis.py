@@ -7,12 +7,7 @@ root_path = "C:\\Users\\Tutku\\Desktop\\Python\\"
 
 dummy_name = root_path+"dummyDataSet"+time.strftime("%Y-%m-%d_%H%M%S")+".csv"
 
-header="id,tarih,plaka,marka,model,uretim_tarihi,km,parca_fiyat,iscilik_fiyat"
-
-
-
-
-
+header="id,tarih,plaka,marka,model,uretim_tarihi,km,parca_adi,parca_fiyat,iscilik_fiyat"
 
 markalar=["FIAT", "MERCEDES", "BMW", "AUDI", "TOFAS", "FORD", "TESLA", "SAAB",\
          "VOLVO", "VOLKSWAGEN"]
@@ -32,6 +27,14 @@ modeller = {"FIAT": ["EGEA","500L","500","DOBLO"],
          "PEUGEOT": ["206","306","407"]        
          }
 
+
+
+parcalar = ["DEBRIYAJ RULMANI", "DIREKSIYON POMPASI", "BALATA"]
+
+
+    
+
+
 dosya = open(dummy_name,"w", encoding="UTF-8")
 dosya.write(header+"\n")
 
@@ -45,6 +48,10 @@ def gelisTarihi():
 
 for x in range (24000):
 
+    parca_fiyatları = {"DEBRIYAJ RULMANI": [random.randint(400,700)],
+                   "DIREKSIYON POMPASI": [random.randint(500,900)],
+                   "BALATA": [random.randint(400,800)]}
+
     a = random.randint(1,81)
     if a < 10:
         a = "0"+str(a)
@@ -52,18 +59,19 @@ for x in range (24000):
         random.choice(string.ascii_uppercase)
     c = random.randint(10,9999)
 
-
+    
     
     tarih = gelisTarihi()
     plaka = str(a)+"-"+str(b)+"-"+str(c)
     uretim_tarihi = random.randint(2000,2017)
     km = random.randint(1000,200000)
-    parca_fiyat = random.randint(50,10000)
+    parca_adi = random.choice(parcalar)
+    parca_fiyat = random.choice(parca_fiyatları[parca_adi])
     iscilik_fiyat = random.randint(250,2000)
     marka=random.choice(markalar)
     model=random.choice(modeller[marka])
     dosya.write(str(x)+","+str(tarih)+","+str(plaka)+","+str(marka)+","+str(model)+","+str(uretim_tarihi)+","\
-                +str(km)+","+str(parca_fiyat)+","+str(iscilik_fiyat)+"\n")
+                +str(km)+","+str(parca_adi)+","+str(parca_fiyat)+","+str(iscilik_fiyat)+"\n")
 
 
 dosya.close()
