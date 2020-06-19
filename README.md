@@ -1,1 +1,1 @@
-"arac_servis" 
+"Test amacli yapilan bir repodur" 
